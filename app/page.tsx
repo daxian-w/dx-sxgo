@@ -230,6 +230,11 @@ export default function Home() {
     []
   );
 
+  const handleIndustryChange = useCallback((industry: string | null) => {
+    setSelectedIndustry(industry);
+    setSelectedCity(null);
+  }, []);
+
   return (
     <div
       className="min-h-screen bg-gradient-to-b from-[#FFFAF5] via-[#FFFDF9] to-white"
@@ -501,7 +506,7 @@ export default function Home() {
               <motion.button
                 variants={filterVariants}
                 custom={0}
-                onClick={() => setSelectedIndustry(null)}
+                onClick={() => handleIndustryChange(null)}
                 className={`px-3.5 py-1.5 rounded-full font-semibold text-[11px] leading-none transition-all duration-300
                   ${
                     selectedIndustry === null
@@ -517,7 +522,7 @@ export default function Home() {
                     key={industry}
                     variants={filterVariants}
                       custom={i + 1}
-                      onClick={() => setSelectedIndustry(industry)}
+                      onClick={() => handleIndustryChange(industry)}
                     className={`px-3.5 py-1.5 rounded-full font-semibold text-[11px] leading-none transition-all duration-300 whitespace-nowrap
                       ${
                         selectedIndustry === industry
