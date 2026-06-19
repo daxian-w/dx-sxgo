@@ -1,0 +1,40 @@
+{
+  "name": "dx-sxgo",
+  "description": "双休购，一个支持守规矩企业的精选推荐站点。",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daxian-w/dx-sxgo"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "npm run check-types",
+    "check-types": "tsc --noEmit",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
+  },
+  "dependencies": {
+    "framer-motion": "^11.2.4",
+    "next": "latest",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
+    "@types/node": "20.11.5",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "autoprefixer": "10.4.17",
+    "encoding": "^0.1.13",
+    "postcss": "8.4.33",
+    "prettier": "^2.8.8",
+    "tailwindcss": "3.4.1",
+    "typescript": "5.3.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

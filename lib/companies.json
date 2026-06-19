@@ -1,0 +1,208 @@
+{
+  "total": 28,
+  "industries": [
+    "3C数码",
+    "保健滋补",
+    "其他",
+    "宠物用品",
+    "家居家具",
+    "家用电器",
+    "家纺母婴",
+    "日化个护",
+    "调味品",
+    "运动户外",
+    "饮料冲调"
+  ],
+  "data": {
+    "3C数码": [
+      {
+        "name": "品胜",
+        "products": "充电与数码配件",
+        "industry": "3C数码",
+        "city": "深圳"
+      },
+      {
+        "name": "花再",
+        "products": "音频设备",
+        "industry": "3C数码",
+        "city": "深圳"
+      }
+    ],
+    "保健滋补": [
+      {
+        "name": "东海药业",
+        "products": "益生菌与微生态",
+        "industry": "保健滋补",
+        "city": "青岛"
+      },
+      {
+        "name": "安利",
+        "products": "营养保健与个护",
+        "industry": "保健滋补",
+        "city": "广州"
+      }
+    ],
+    "其他": [
+      {
+        "name": "山西焦煤",
+        "products": "煤炭能源",
+        "industry": "其他",
+        "city": "太原"
+      },
+      {
+        "name": "恩威特",
+        "products": "空气净化方案",
+        "industry": "其他",
+        "city": "苏州"
+      },
+      {
+        "name": "明皜传感",
+        "products": "MEMS传感器",
+        "industry": "其他",
+        "city": "苏州"
+      },
+      {
+        "name": "先行网络",
+        "products": "票务与信息服务",
+        "industry": "其他",
+        "city": "厦门"
+      },
+      {
+        "name": "黄天鹅",
+        "products": "鸡蛋与蛋制品",
+        "industry": "其他",
+        "city": "绵阳"
+      },
+      {
+        "name": "寂静诗章",
+        "products": "文化内容服务",
+        "industry": "其他",
+        "city": "盐城"
+      },
+      {
+        "name": "中凌科",
+        "products": "自动化控制",
+        "industry": "其他",
+        "city": "北京"
+      },
+      {
+        "name": "国家电网",
+        "products": "电力能源服务",
+        "industry": "其他",
+        "city": "北京"
+      },
+      {
+        "name": "紫金矿业",
+        "products": "金属矿业",
+        "industry": "其他",
+        "city": "龙岩"
+      },
+      {
+        "name": "妙创未来",
+        "products": "AI创作工具",
+        "industry": "其他",
+        "city": "武汉"
+      },
+      {
+        "name": "企业预警通",
+        "products": "企业风险数据服务",
+        "industry": "其他",
+        "city": "上海"
+      },
+      {
+        "name": "新格",
+        "products": "铝合金与工业材料",
+        "industry": "其他",
+        "city": "上海"
+      },
+      {
+        "name": "柔脉医疗",
+        "products": "再生医疗技术",
+        "industry": "其他",
+        "city": "深圳"
+      }
+    ],
+    "宠物用品": [
+      {
+        "name": "瑞德医生",
+        "products": "宠物营养与用品",
+        "industry": "宠物用品",
+        "city": "赣州"
+      }
+    ],
+    "家居家具": [
+      {
+        "name": "富轩门窗",
+        "products": "系统门窗",
+        "industry": "家居家具",
+        "city": "佛山"
+      },
+      {
+        "name": "富光",
+        "products": "杯壶与水具",
+        "industry": "家居家具",
+        "city": "合肥"
+      },
+      {
+        "name": "瑞尔特",
+        "products": "卫浴产品",
+        "industry": "家居家具",
+        "city": "厦门"
+      },
+      {
+        "name": "宜家",
+        "products": "家具与家居用品",
+        "industry": "家居家具",
+        "city": "上海"
+      }
+    ],
+    "家用电器": [
+      {
+        "name": "IQAir",
+        "products": "空气净化器",
+        "industry": "家用电器",
+        "city": "广州"
+      }
+    ],
+    "家纺母婴": [
+      {
+        "name": "PLAYMOBIL / 摩比世界",
+        "products": "儿童玩具",
+        "industry": "家纺母婴",
+        "city": "上海"
+      }
+    ],
+    "日化个护": [
+      {
+        "name": "可柔",
+        "products": "洗护与个护",
+        "industry": "日化个护",
+        "city": "汕头"
+      }
+    ],
+    "调味品": [
+      {
+        "name": "味事达",
+        "products": "酱油与调味汁",
+        "industry": "调味品",
+        "city": "江门"
+      }
+    ],
+    "运动户外": [
+      {
+        "name": "耐克",
+        "products": "运动鞋服",
+        "industry": "运动户外",
+        "city": "上海"
+      }
+    ],
+    "饮料冲调": [
+      {
+        "name": "星巴克即饮",
+        "products": "即饮咖啡",
+        "industry": "饮料冲调",
+        "city": "西雅图"
+      }
+    ]
+  }
+}

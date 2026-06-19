@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 双休购色系 */
+    --color-primary: #3DAD8A;
+    --color-secondary: #F5C234;
+    --color-accent: #99D93F;
+    --color-beige: #BDB38F;
+    --color-neutral-50: #FFFAF5;
+    --color-neutral-100: #F5F0E8;
+
+    /* shadcn 兼容变量 */
+    --background: 35 100% 98.5%;
+    --foreground: 30 12% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 12% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 12% 14%;
+
+    --primary: 158 46% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 44 91% 69%;
+    --secondary-foreground: 40 12% 16%;
+
+    --muted: 35 24% 65%;
+    --muted-foreground: 35 15% 35%;
+
+    --accent: 88 58% 52%;
+    --accent-foreground: 40 12% 16%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 35 20% 87%;
+    --input: 35 20% 93%;
+    --ring: 158 46% 45%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 30 12% 8%;
+    --foreground: 35 10% 90%;
+
+    --card: 30 12% 10%;
+    --card-foreground: 35 10% 90%;
+
+    --popover: 30 12% 8%;
+    --popover-foreground: 35 10% 90%;
+
+    --primary: 158 46% 55%;
+    --primary-foreground: 30 12% 10%;
+
+    --secondary: 44 91% 59%;
+    --secondary-foreground: 30 12% 10%;
+
+    --muted: 35 15% 25%;
+    --muted-foreground: 35 10% 60%;
+
+    --accent: 88 58% 62%;
+    --accent-foreground: 30 12% 10%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 35 15% 20%;
+    --input: 35 15% 20%;
+    --ring: 88 58% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#FFFAF5] text-[#2A2620];
+    font-family: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4c8b8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b8aa98;
+}
+
+@layer utilities {
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
