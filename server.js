@@ -1,7 +1,7 @@
 const http = require('http')
 const next = require('next')
 
-const dev = process.env.NODE_ENV !== 'production'
+const dev = process.env.NODE_ENV === 'development'
 const hostname = process.env.BIND_HOST || process.env.HOST || '0.0.0.0'
 const port = Number.parseInt(process.env.PORT || '3000', 10)
 
