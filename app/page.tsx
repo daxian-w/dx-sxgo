@@ -147,7 +147,6 @@ export default function Home() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const navLinks: NavLink[] = [
@@ -326,26 +325,12 @@ export default function Home() {
                 )}
               </motion.div>
 
-              <button
-                type="button"
-                aria-label={mobileMenuOpen ? '关闭菜单' : '打开菜单'}
-                aria-expanded={mobileMenuOpen}
-                onClick={() => setMobileMenuOpen((open) => !open)}
-                className="md:hidden inline-flex h-10 min-w-20 px-4 items-center justify-center rounded-full border border-primary-200 bg-white/90 text-sm font-semibold text-primary-700 shadow-sm transition-colors hover:bg-primary-50"
-              >
-                {mobileMenuOpen ? '关闭' : '更多'}
-              </button>
-            </div>
-
-            <AnimatePresence>
-              {mobileMenuOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.18 }}
-                  className="md:hidden mt-3 grid grid-cols-2 gap-2"
-                >
+              <details className="md:hidden group relative">
+                <summary className="list-none inline-flex h-10 min-w-20 cursor-pointer select-none items-center justify-center rounded-full border border-primary-200 bg-white/90 px-4 text-sm font-semibold text-primary-700 shadow-sm transition-colors hover:bg-primary-50 [&::-webkit-details-marker]:hidden">
+                  <span className="group-open:hidden">更多</span>
+                  <span className="hidden group-open:inline">关闭</span>
+                </summary>
+                <div className="absolute right-0 top-12 z-50 grid w-[min(22rem,calc(100vw-2rem))] grid-cols-2 gap-2">
                   {navLinks.map((link) =>
                     link.external ? (
                       <a
@@ -353,7 +338,6 @@ export default function Home() {
                         href={link.href}
                         target="_blank"
                         rel="noreferrer"
-                        onClick={() => setMobileMenuOpen(false)}
                         className={`rounded-xl border bg-white/95 px-3 py-2.5 text-center text-sm font-semibold shadow-sm transition-colors ${
                           link.variant === 'primary'
                             ? 'border-primary-200 text-primary-700 hover:bg-primary-50'
@@ -366,7 +350,6 @@ export default function Home() {
                       <Link
                         key={link.href}
                         href={link.href}
-                        onClick={() => setMobileMenuOpen(false)}
                         className={`rounded-xl border bg-white/95 px-3 py-2.5 text-center text-sm font-semibold shadow-sm transition-colors ${
                           link.variant === 'primary'
                             ? 'border-primary-200 text-primary-700 hover:bg-primary-50'
@@ -377,9 +360,9 @@ export default function Home() {
                       </Link>
                     )
                   )}
-                </motion.div>
-              )}
-            </AnimatePresence>
+                </div>
+              </details>
+            </div>
           </div>
         </nav>
         {/* ── Hero Section ── */}
