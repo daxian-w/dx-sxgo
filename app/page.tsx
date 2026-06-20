@@ -167,6 +167,12 @@ export default function Home() {
       label: '联系开发者',
       variant: 'neutral',
     },
+    {
+      href: 'https://docs.qq.com/form/page/DU3F6bmxJZFBPSXh0',
+      label: '新增企业',
+      variant: 'neutral',
+      external: true,
+    },
   ];
 
   // Scroll detection for navbar
