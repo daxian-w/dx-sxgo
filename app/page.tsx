@@ -110,7 +110,7 @@ function StatsBar() {
 
   return (
     <motion.div
-      initial="hidden"
+      initial={false}
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
       className="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto mb-12"
@@ -277,7 +277,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
             <div className="flex items-center justify-between gap-4">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={false}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
                 className="flex items-center"
@@ -290,7 +290,7 @@ export default function Home() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: 16 }}
+                initial={false}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.12 }}
                 className="hidden md:flex items-center justify-end gap-2 lg:gap-3 flex-wrap"
@@ -385,7 +385,7 @@ export default function Home() {
         {/* ── Hero Section ── */}
         <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 md:pt-16 md:pb-12">
           <motion.div
-            initial="hidden"
+            initial={false}
             animate="visible"
             variants={containerVariants}
             className="text-center mb-8"
@@ -435,7 +435,7 @@ export default function Home() {
 
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
             className="max-w-2xl mx-auto mb-8"
@@ -502,7 +502,7 @@ export default function Home() {
 
           {/* ── Industry + City Filters ── */}
           <motion.div
-            initial="hidden"
+            initial={false}
             animate="visible"
             variants={containerVariants}
             className="mb-6"
@@ -582,7 +582,7 @@ export default function Home() {
 
           {/* ── Result count ── */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.4 }}
             className="text-center mb-6"
@@ -598,7 +598,7 @@ export default function Home() {
 
           {/* ── Company Table ── */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             className="w-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm"
@@ -637,7 +637,7 @@ export default function Home() {
                       filteredCompanies.map((company, idx) => (
                         <motion.tr
                           key={`${company.name}-${company.city}-${idx}`}
-                          initial={{ opacity: 0, x: -10 }}
+                          initial={false}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: 10 }}
                           transition={{
@@ -733,7 +733,7 @@ export default function Home() {
                     ) : (
                       <motion.tr
                         key="empty"
-                        initial={{ opacity: 0 }}
+                        initial={false}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
                       >
@@ -782,7 +782,7 @@ export default function Home() {
           {/* ── Pagination hint ── */}
           {filteredCompanies.length > 50 && (
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={false}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
               className="mt-4 text-center"
@@ -798,7 +798,7 @@ export default function Home() {
 
         {/* ── Bottom Section: Mission ── */}
         <motion.section
-          initial={{ opacity: 0, y: 40 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
