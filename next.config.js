@@ -25,7 +25,6 @@ const nextConfig = {
       {
         source: '/:path*',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=86400' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'X-Frame-Options', value: 'DENY' },
         ],
