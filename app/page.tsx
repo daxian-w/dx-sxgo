@@ -10,6 +10,7 @@ type Company = {
   products: string;
   industry: string;
   city: string;
+  qrCode?: string;
 };
 
 type NavLink = {
@@ -138,6 +139,58 @@ function StatsBar() {
         </motion.div>
       ))}
     </motion.div>
+  );
+}
+
+function CompanyQrDisclosure({ company }: { company: Company }) {
+  return (
+    <details className="group/qr inline-block">
+      <summary
+        className="list-none cursor-pointer select-none rounded-full px-2 py-1 font-semibold text-neutral-900 text-xs transition-colors hover:bg-primary-50 hover:text-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 sm:text-sm [&::-webkit-details-marker]:hidden"
+        title="点击查看企业二维码"
+      >
+        <span>{company.name}</span>
+        <span className="ml-1 text-[10px] font-medium text-primary-500 opacity-70 group-open/qr:hidden">
+          二维码
+        </span>
+        <span className="ml-1 hidden text-[10px] font-medium text-primary-500 group-open/qr:inline">
+          收起
+        </span>
+      </summary>
+
+      <div className="mx-auto mt-2 w-36 rounded-2xl border border-primary-100 bg-white p-2.5 text-center shadow-lg">
+        {company.qrCode ? (
+          <img
+            src={company.qrCode}
+            alt={`${company.name} 企业二维码`}
+            className="mx-auto aspect-square w-full rounded-xl border border-neutral-100 object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div className="flex aspect-square w-full flex-col items-center justify-center rounded-xl border border-dashed border-primary-200 bg-primary-50/60 px-3 text-primary-700">
+            <svg
+              className="mb-2 h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.7}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 4.5h5.25v5.25H3.75V4.5zM15 4.5h5.25v5.25H15V4.5zM3.75 15h5.25v5.25H3.75V15zM14.25 14.25h1.5v1.5h-1.5v-1.5zM18.75 14.25h1.5v1.5h-1.5v-1.5zM14.25 18.75h1.5v1.5h-1.5v-1.5zM18.75 18.75h1.5v1.5h-1.5v-1.5z"
+              />
+            </svg>
+            <span className="text-xs font-semibold leading-relaxed">
+              二维码待补充
+            </span>
+          </div>
+        )}
+        <p className="mt-2 text-[11px] leading-relaxed text-neutral-500">
+          {company.qrCode ? '扫码查看企业信息' : '上传图片后自动显示'}
+        </p>
+      </div>
+    </details>
   );
 }
 
@@ -632,9 +685,7 @@ export default function Home() {
                                      transition-all duration-200 group"
                         >
                           <td className="px-2.5 py-3 md:px-5 md:py-3.5 text-center align-middle">
-                            <span className="font-semibold text-neutral-900 text-xs sm:text-sm whitespace-nowrap">
-                              {company.name}
-                            </span>
+                            <CompanyQrDisclosure company={company} />
                           </td>
                           <td className="px-2.5 py-3 md:px-5 md:py-3.5 text-center align-middle">
                             <span className="text-neutral-600 text-xs sm:text-sm leading-relaxed block truncate text-center">
