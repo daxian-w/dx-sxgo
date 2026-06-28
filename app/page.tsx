@@ -11,6 +11,8 @@ type Company = {
   industry: string;
   city: string;
   qrCode?: string;
+  workTag?: string;
+  addedAt?: string;
 };
 
 type NavLink = {
@@ -143,13 +145,25 @@ function StatsBar() {
 }
 
 function CompanyQrDisclosure({ company }: { company: Company }) {
+  const workTagLabel =
+    company.workTag === '三休'
+      ? '📅上四休三'
+      : company.workTag;
+
   return (
     <details className="group/qr inline-block">
       <summary
         className="list-none cursor-pointer select-none rounded-full px-2 py-1 font-semibold text-neutral-900 text-xs transition-colors hover:bg-primary-50 hover:text-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 sm:text-sm [&::-webkit-details-marker]:hidden"
         title="点击查看企业二维码"
       >
-        <span>{company.name}</span>
+        <span className="inline-flex items-center gap-1.5">
+          <span>{company.name}</span>
+          {workTagLabel && (
+            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700">
+              {workTagLabel}
+            </span>
+          )}
+        </span>
         <span className="ml-1 text-[10px] font-medium text-primary-500 opacity-70 group-open/qr:hidden">
           二维码
         </span>
@@ -163,7 +177,7 @@ function CompanyQrDisclosure({ company }: { company: Company }) {
           <img
             src={company.qrCode}
             alt={`${company.name} 企业二维码`}
-            className="mx-auto aspect-square w-full rounded-xl border border-neutral-100 object-cover"
+            className="mx-auto aspect-square w-full rounded-xl border border-neutral-100 object-contain bg-white"
             loading="lazy"
           />
         ) : (
@@ -197,6 +211,7 @@ function CompanyQrDisclosure({ company }: { company: Company }) {
 // ── Main Page ──
 export default function Home() {
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
+  const [selectedWorkTag, setSelectedWorkTag] = useState<string | null>(null);
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [scrolled, setScrolled] = useState(false);
@@ -253,7 +268,13 @@ export default function Home() {
     const data = companiesData.data as Record<string, Company[]>;
     let companies: Company[] = [];
 
-    if (selectedIndustry) {
+    if (selectedWorkTag) {
+      Object.values(data).forEach((items) => {
+        companies = companies.concat(
+          items.filter((company) => company.workTag === selectedWorkTag)
+        );
+      });
+    } else if (selectedIndustry) {
       companies = data[selectedIndustry] || [];
     } else {
       Object.values(data).forEach((items) => {
@@ -275,8 +296,20 @@ export default function Home() {
       );
     }
 
-    return companies;
-  }, [selectedIndustry, selectedCity, searchTerm]);
+    return companies
+      .map((company, index) => ({ company, index }))
+      .sort((a, b) => {
+        const aAddedAt = a.company.addedAt ? Date.parse(a.company.addedAt) : 0;
+        const bAddedAt = b.company.addedAt ? Date.parse(b.company.addedAt) : 0;
+
+        if (aAddedAt !== bAddedAt) {
+          return bAddedAt - aAddedAt;
+        }
+
+        return a.index - b.index;
+      })
+      .map(({ company }) => company);
+  }, [selectedIndustry, selectedWorkTag, selectedCity, searchTerm]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -290,6 +323,13 @@ export default function Home() {
 
   const handleIndustryChange = useCallback((industry: string | null) => {
     setSelectedIndustry(industry);
+    setSelectedWorkTag(null);
+    setSelectedCity(null);
+  }, []);
+
+  const handleWorkTagChange = useCallback((workTag: string | null) => {
+    setSelectedWorkTag(workTag);
+    setSelectedIndustry(null);
     setSelectedCity(null);
   }, []);
 
@@ -558,13 +598,26 @@ export default function Home() {
               >
                 全部
               </motion.button>
+              <motion.button
+                variants={filterVariants}
+                custom={1}
+                onClick={() => handleWorkTagChange('三休')}
+                className={`px-3.5 py-1.5 rounded-full font-semibold text-[11px] leading-none transition-all duration-300 whitespace-nowrap
+                  ${
+                    selectedWorkTag === '三休'
+                      ? 'bg-primary-600 text-white shadow-md shadow-primary-200/50 scale-105'
+                      : 'bg-white border-2 border-neutral-200 text-neutral-600 hover:border-primary-300 hover:bg-primary-50'
+                  }`}
+              >
+                三休
+              </motion.button>
               {industries.map((industry, i) => {
                 return (
                   <motion.button
                     key={industry}
                     variants={filterVariants}
-                      custom={i + 1}
-                      onClick={() => handleIndustryChange(industry)}
+                    custom={i + 2}
+                    onClick={() => handleIndustryChange(industry)}
                     className={`px-3.5 py-1.5 rounded-full font-semibold text-[11px] leading-none transition-all duration-300 whitespace-nowrap
                       ${
                         selectedIndustry === industry
@@ -579,7 +632,7 @@ export default function Home() {
             </div>
 
             {/* City filter (only when industry is selected) */}
-            {selectedIndustry && (
+            {(selectedIndustry || selectedWorkTag) && (
               <div className="flex flex-wrap gap-1.5 justify-center mb-4">
                 <button
                   onClick={() => setSelectedCity(null)}
@@ -624,7 +677,7 @@ export default function Home() {
             className="text-center mb-6"
           >
             <p className="text-sm text-neutral-500">
-              {(searchTerm || selectedIndustry || selectedCity) && (
+              {(searchTerm || selectedIndustry || selectedWorkTag || selectedCity) && (
                 <>
                   找到匹配企业
                 </>

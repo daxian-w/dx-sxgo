@@ -1,10 +1,11 @@
 {
-  "total": 28,
+  "total": 29,
   "industries": [
     "饮料冲调",
     "3C数码",
     "保健滋补",
     "其他",
+    "媒体营销",
     "宠物用品",
     "家居家具",
     "家用电器",
@@ -134,6 +135,17 @@
         "products": "再生医疗技术",
         "industry": "其他",
         "city": "深圳"
+      }
+    ],
+    "媒体营销": [
+      {
+        "name": "尚世休杉",
+        "products": "媒体营销服务",
+        "industry": "媒体营销",
+        "city": "成都",
+        "qrCode": "/company-qrs/shangshixiushan.jpg",
+        "workTag": "三休",
+        "addedAt": "2026-06-28"
       }
     ],
     "宠物用品": [
