@@ -209,6 +209,79 @@ function CompanyQrDisclosure({ company }: { company: Company }) {
 }
 
 // ── Main Page ──
+function FloatingMiniProgramLabelModal() {
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const toggleZoom = useCallback(() => {
+    setIsZoomed((current) => !current);
+  }, []);
+
+  useEffect(() => {
+    if (!isZoomed) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsZoomed(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isZoomed]);
+
+  return (
+    <>
+      <button
+        type="button"
+        aria-label={isZoomed ? '收起二维码' : '放大二维码'}
+        title={isZoomed ? '收起二维码' : '放大二维码'}
+        onClick={toggleZoom}
+        className="fixed left-3 top-1/2 z-40 block -translate-y-1/2 overflow-hidden rounded-[1.25rem] border-2 border-[#D9C9A7] bg-white/95 shadow-[0_16px_40px_rgba(61,173,138,0.18)] backdrop-blur-sm transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 hover:scale-[1.02]"
+      >
+        <img
+          src="/IMG_92474.png"
+          alt="扫码访问小程序"
+          className="block h-auto w-20 sm:w-24 md:w-32"
+          loading="lazy"
+        />
+      </button>
+
+      <AnimatePresence>
+        {isZoomed && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/25 backdrop-blur-[1px] px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={toggleZoom}
+          >
+            <motion.button
+              type="button"
+              aria-label="收起二维码"
+              className="overflow-hidden rounded-[1.25rem] border-2 border-[#D9C9A7] bg-white/95 shadow-[0_18px_60px_rgba(61,173,138,0.24)] backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
+              initial={{ scale: 0.35, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.35, opacity: 0 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              onClick={(event) => {
+                event.stopPropagation();
+                toggleZoom();
+              }}
+            >
+              <img
+                src="/IMG_92474.png"
+                alt="扫码访问小程序"
+                className="block h-auto w-60 max-w-[calc(100vw-2rem)] sm:w-72 md:w-96"
+                loading="lazy"
+              />
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
 export default function Home() {
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
   const [selectedWorkTag, setSelectedWorkTag] = useState<string | null>(null);
@@ -338,6 +411,7 @@ export default function Home() {
       className="min-h-screen bg-gradient-to-b from-[#FFFAF5] via-[#FFFDF9] to-white"
       onKeyDown={handleKeyDown}
     >
+      <FloatingMiniProgramLabelModal />
       {/* ── Decorative Background Elements ── */}
       <div className="fixed top-0 left-0 w-full h-[600px] pointer-events-none overflow-hidden -z-0">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-primary-500/3 blur-3xl" />
