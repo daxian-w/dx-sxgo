@@ -209,6 +209,44 @@ function CompanyQrDisclosure({ company }: { company: Company }) {
 }
 
 // ── Main Page ──
+function WeChatSearchCard({ size }: { size: 'compact' | 'large' }) {
+  const isLarge = size === 'large';
+
+  return (
+    <div
+      className={`flex aspect-[6/7] flex-col items-center justify-center bg-white ${
+        isLarge ? 'w-60 gap-3 px-4 sm:w-72 md:w-96' : 'w-20 gap-1 px-1.5 sm:w-24 md:w-32 md:gap-2 md:px-3'
+      }`}
+    >
+      <img
+        src="/wechat-app-icon.png"
+        alt=""
+        aria-hidden="true"
+        className={`block shrink-0 rounded-[22%] object-contain ${
+          isLarge ? 'h-24 w-24 sm:h-28 sm:w-28 md:h-36 md:w-36' : 'h-9 w-9 sm:h-11 sm:w-11 md:h-16 md:w-16'
+        }`}
+        loading="lazy"
+      />
+      <div className="text-center leading-tight">
+        <div
+          className={`font-extrabold text-[#20251F] ${
+            isLarge ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-[11px] sm:text-xs md:text-base'
+          }`}
+        >
+          小程序搜索
+        </div>
+        <div
+          className={`font-extrabold text-[#07A857] ${
+            isLarge ? 'mt-2 text-xl sm:text-2xl md:text-3xl' : 'mt-0.5 text-[10px] sm:text-[11px] md:text-sm'
+          }`}
+        >
+          sxgo备忘录
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function FloatingMiniProgramLabelModal() {
   const [isZoomed, setIsZoomed] = useState(false);
 
@@ -233,17 +271,12 @@ function FloatingMiniProgramLabelModal() {
     <>
       <button
         type="button"
-        aria-label={isZoomed ? '收起二维码' : '放大二维码'}
-        title={isZoomed ? '收起二维码' : '放大二维码'}
+        aria-label={isZoomed ? '收起小程序搜索卡片' : '放大小程序搜索卡片'}
+        title={isZoomed ? '收起小程序搜索卡片' : '放大小程序搜索卡片'}
         onClick={toggleZoom}
         className="fixed left-3 top-1/2 z-40 block -translate-y-1/2 overflow-hidden rounded-[1.25rem] border-2 border-[#D9C9A7] bg-white/95 shadow-[0_16px_40px_rgba(61,173,138,0.18)] backdrop-blur-sm transition-transform duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 hover:scale-[1.02]"
       >
-        <img
-          src="/IMG_92474.png"
-          alt="扫码访问小程序"
-          className="block h-auto w-20 sm:w-24 md:w-32"
-          loading="lazy"
-        />
+        <WeChatSearchCard size="compact" />
       </button>
 
       <AnimatePresence>
@@ -257,7 +290,7 @@ function FloatingMiniProgramLabelModal() {
           >
             <motion.button
               type="button"
-              aria-label="收起二维码"
+              aria-label="收起小程序搜索卡片"
               className="overflow-hidden rounded-[1.25rem] border-2 border-[#D9C9A7] bg-white/95 shadow-[0_18px_60px_rgba(61,173,138,0.24)] backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
               initial={{ scale: 0.35, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -268,12 +301,7 @@ function FloatingMiniProgramLabelModal() {
                 toggleZoom();
               }}
             >
-              <img
-                src="/IMG_92474.png"
-                alt="扫码访问小程序"
-                className="block h-auto w-60 max-w-[calc(100vw-2rem)] sm:w-72 md:w-96"
-                loading="lazy"
-              />
+              <WeChatSearchCard size="large" />
             </motion.button>
           </motion.div>
         )}
