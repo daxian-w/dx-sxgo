@@ -154,7 +154,7 @@ function CompanyQrDisclosure({ company }: { company: Company }) {
     <details className="group/qr inline-block">
       <summary
         className="list-none cursor-pointer select-none rounded-full px-2 py-1 font-semibold text-neutral-900 text-xs transition-colors hover:bg-primary-50 hover:text-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 sm:text-sm [&::-webkit-details-marker]:hidden"
-        title="点击查看企业二维码"
+        title="扫码支持企业"
       >
         <span className="inline-flex items-center gap-1.5">
           <span>{company.name}</span>
@@ -165,7 +165,7 @@ function CompanyQrDisclosure({ company }: { company: Company }) {
           )}
         </span>
         <span className="ml-1 text-[10px] font-medium text-primary-500 opacity-70 group-open/qr:hidden">
-          二维码
+          扫码支持
         </span>
         <span className="ml-1 hidden text-[10px] font-medium text-primary-500 group-open/qr:inline">
           收起
